@@ -1,9 +1,7 @@
-all: build_server_1 build_server_2 
+all: build_server 
 
-build_server_1:
+build_server:
 	g++ -ggdb -O0 -std=c++11 -o server server.cpp
-build_server_2:
-	g++ -ggdb -O0 -std=c++11 -o server_poll server_poll.cpp
 
 
 
