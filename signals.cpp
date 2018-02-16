@@ -9,19 +9,22 @@ int main (int argc, char** argv){
 
 std::ofstream fpar;
 std::ofstream fchld;
-
-pid_t pid_par;
+int answ;
+pid_t pid_par=fork();
 pid_t pid_chld;
 
-if (fork()){
+if (pid_par){
 //parent
 pid_par = getpid();
-fpar.open("/home/osboxes/sig/pid_parent.txt");
+fpar.open("/home/box/pid_parent");
 fpar << pid_par;
 fpar.close();
 printf("parent proc pid=%d \n",pid_par);
 signal(SIGTERM,SIG_IGN);
 signal(SIGABRT,SIG_IGN);
+printf("chld proc pid=%d \n",pid_chld);
+
+waitpid(pid_chld,answ,0);
 while(1)
 {
 sleep(1);
@@ -30,7 +33,7 @@ sleep(1);
 } else {
 //chld
 pid_chld = getpid();
-fchld.open("/home/osboxes/sig/pid_child.txt");
+fchld.open("/home/box/pid_child");
 fchld << pid_chld;
 fchld.close();
 printf("child proc pid=%d \n",pid_chld);
