@@ -25,9 +25,9 @@ signal(SIGABRT,SIG_IGN);
 printf("chld proc pid=%d \n",pid_chld);
 
 waitpid(pid_chld,answ,0);
-while(1)
-{
-sleep(1);
+
+
+pause();
 
 }
 } else {
